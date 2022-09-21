@@ -1,6 +1,6 @@
 function Cryptocurrencies() {
   return (
-    <div>Cryptocurrencies</div>
+    <>Cryptocurrencies</>
   )
 }
 
