@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button, Menu, Typography, Avatar } from 'antd';
 import {
   HomeOutlined,
-  MoneyCollectOutlined,
   BulbOutlined,
   FundOutlined,
   MenuOutlined,
@@ -51,7 +50,7 @@ const Navbar = () => {
           items={[
             { label: 'Home', icon: <HomeOutlined />, key: 'home', onClick: () => navigate('/') },
             { label: 'Cryptocurrencies', icon: <FundOutlined />, key: 'cryptocurrencies', onClick: () => navigate('/cryptocurrencies') },
-            { label: 'Exchanges', icon: <MoneyCollectOutlined />, key: 'exchanges', onClick: () => navigate('/exchanges') },
+            // { label: 'Exchanges', icon: <MoneyCollectOutlined />, key: 'exchanges', onClick: () => navigate('/exchanges') },
             { label: 'News', icon: <BulbOutlined />, key: 'news', onClick: () => navigate('/news') },
           ]}
         />
