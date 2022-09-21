@@ -97,7 +97,19 @@ a:hover {
   }
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1050px) {
+  .menu-control-container {
+    display: block !important;
+  }
+
+  .nav-container {
+    height: 8vh;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background-color: var(--bgSecondary);
+  }
+
   .app {
     flex-direction: column;
     overflow: hidden;
@@ -114,25 +126,15 @@ a:hover {
     margin-right: 10px;
   }
 
-  .nav-container {
-    height: 8vh;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    background-color: var(--bgSecondary);
-  }
-
-  .menu-control-container {
-    display: block !important;
-  }
-
   .ant-menu {
     position: absolute;
     right: 0px;
   }
+
   .home-title {
     font-size: 1.4rem !important;
   }
+
   .show-more {
     font-size: 1.3rem !important;
   }
@@ -191,7 +193,6 @@ a:hover {
   font-size: 1rem;
   opacity: 0.9;
   padding: 20px;
-
 }
 
 .coin-stats-name {
@@ -262,7 +263,8 @@ a:hover {
   font-size: 1rem;
 }
 
-.coin-link:hover, .coin-stats:hover {
+.coin-link:hover,
+.coin-stats:hover {
   background-color: var(--bgSecondary);
 }
 
@@ -270,9 +272,11 @@ a:hover {
   .stats-container {
     flex-direction: column;
   }
+
   .coin-desc-link {
     flex-direction: column;
   }
+
   .stats-container h2 {
     margin-top: 0px;
   }
@@ -282,6 +286,7 @@ a:hover {
   .coin-links {
     padding: 0px;
   }
+
   .coin-detail-container {
     margin: 0;
   }
