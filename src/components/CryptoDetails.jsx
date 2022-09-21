@@ -16,6 +16,7 @@ import {
 } from '@ant-design/icons';
 
 import Loader from './Loader';
+import LineChart from './LineChart';
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
 
 const { Title, Text } = Typography;
@@ -25,6 +26,7 @@ const CryptoDetails = () => {
   const { coinId } = useParams();
   const [timeperiod, setTimeperiod] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return <Loader />;
@@ -57,6 +59,19 @@ const CryptoDetails = () => {
           {cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.
         </p>
       </Col>
+      <Select
+        defaultValue="7d"
+        className="select-timeperiod"
+        placeholder="Select Timeperiod"
+        onChange={(value) => setTimeperiod(value)}
+      >
+        {time.map((date) => <Option key={date}>{date}</Option>)}
+      </Select>
+      <LineChart
+        coinHistory={coinHistory}
+        currentPrice={millify(cryptoDetails?.price)}
+        coinName={cryptoDetails?.name}
+      />
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
@@ -66,7 +81,7 @@ const CryptoDetails = () => {
             <p>An overview showing the statistics of {cryptoDetails.name}, such as the base and quote currency, the rank, and trading volume.</p>
           </Col>
           {stats.map(({ icon, title, value }) => (
-            <Col className="coin-stats">
+            <Col className="coin-stats" key={title}>
               <Col className="coin-stats-name">
                 <Text>{icon}</Text>
                 <Text>{title}</Text>
@@ -81,7 +96,7 @@ const CryptoDetails = () => {
             <p>An overview showing the statistics of {cryptoDetails.name}, such as the base and quote currency, the rank, and trading volume.</p>
           </Col>
           {genericStats.map(({ icon, title, value }) => (
-            <Col className="coin-stats">
+            <Col className="coin-stats" key={title}>
               <Col className="coin-stats-name">
                 <Text>{icon}</Text>
                 <Text>{title}</Text>
