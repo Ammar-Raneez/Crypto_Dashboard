@@ -19,7 +19,7 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 const { Title: TypTitle } = Typography;
@@ -28,10 +28,10 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
-    console.log(coinHistory.data.history[i].timestamp);
+  console.log(coinHistory.data.history);
+  for (let i = coinHistory?.data?.history?.length - 1; i > 0; i--) {
     coinTimestamp.push(
-      new Date(coinHistory.data.history[i].timestamp).toLocaleDateString()
+      new Date(coinHistory.data.history[i].timestamp * 1000).toLocaleDateString()
     );
 
     coinPrice.push(coinHistory.data.history[i].price);
