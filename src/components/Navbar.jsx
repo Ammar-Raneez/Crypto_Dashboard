@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Menu, Typography, Avatar } from 'antd';
 import {
   HomeOutlined,
@@ -14,6 +14,7 @@ import icon from '../images/cryptocurrency.png';
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [screenSize, setScreenSize] = useState(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -45,20 +46,15 @@ const Navbar = () => {
         </Button>
       </div>
       {activeMenu && (
-        <Menu theme="dark">
-          <Menu.Item icon={<HomeOutlined />}>
-            <Link to="/">Home</Link>
-          </Menu.Item>
-          <Menu.Item icon={<FundOutlined />}>
-            <Link to="/cryptocurrencies">Cryptocurrencies</Link>
-          </Menu.Item>
-          <Menu.Item icon={<MoneyCollectOutlined />}>
-            <Link to="/exchanges">Exchanges</Link>
-          </Menu.Item>
-          <Menu.Item icon={<BulbOutlined />}>
-            <Link to="/news">News</Link>
-          </Menu.Item>
-        </Menu>
+        <Menu
+          theme="dark"
+          items={[
+            { label: 'Home', icon: <HomeOutlined />, key: 'home', onClick: () => navigate('/') },
+            { label: 'Cryptocurrencies', icon: <FundOutlined />, key: 'cryptocurrencies', onClick: () => navigate('/cryptocurrencies') },
+            { label: 'Exchanges', icon: <MoneyCollectOutlined />, key: 'exchanges', onClick: () => navigate('/exchanges') },
+            { label: 'News', icon: <BulbOutlined />, key: 'news', onClick: () => navigate('/news') },
+          ]}
+        />
       )}
     </div>
   );
